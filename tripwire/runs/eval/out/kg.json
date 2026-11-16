@@ -1,0 +1,2955 @@
+{
+ "GET /": {
+  "key": "GET /",
+  "method": "GET",
+  "template": "/",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/",
+    "account": null,
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/",
+    "account": null,
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/",
+    "account": null,
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/",
+    "account": null,
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/",
+    "account": null,
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": false,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "POST /api/v3/auth/login": {
+  "key": "POST /api/v3/auth/login",
+  "method": "POST",
+  "template": "/api/v3/auth/login",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "username": "a1_admin",
+   "password": "Pass#1"
+  },
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "role",
+   "token"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/login",
+    "account": "a1_admin",
+    "body": {
+     "username": "a1_admin",
+     "password": "Pass#1"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/login",
+    "account": "a1_agent",
+    "body": {
+     "username": "a1_agent",
+     "password": "Pass#2"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/login",
+    "account": "a1_sub",
+    "body": {
+     "username": "a1_sub",
+     "password": "Pass#3"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/login",
+    "account": "a2_admin",
+    "body": {
+     "username": "a2_admin",
+     "password": "Pass#4"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/login",
+    "account": "a2_agent",
+    "body": {
+     "username": "a2_agent",
+     "password": "Pass#5"
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 1421,
+   "total_window": 1423,
+   "legit_all": 4430,
+   "last_legit": "2026-10-31T12:14:46+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/me": {
+  "key": "GET /api/v3/me",
+  "method": "GET",
+  "template": "/api/v3/me",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "credit_limit",
+   "name",
+   "role",
+   "username"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/me",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/me",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/me",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/me",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/me",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": true,
+  "label": "active",
+  "traffic": {
+   "legit_window": 398,
+   "total_window": 398,
+   "legit_all": 1247,
+   "last_legit": "2026-10-31T12:16:18+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/hotels/search": {
+  "key": "GET /api/v3/hotels/search",
+  "method": "GET",
+  "template": "/api/v3/hotels/search",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {
+   "city": "DEL",
+   "sort": "price"
+  },
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "city",
+   "id",
+   "name",
+   "price"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/search?city=DEL&sort=price",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/search?city=DEL&sort=price",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/search?city=DEL&sort=price",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/search?city=DEL&sort=price",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/search?city=DEL&sort=price",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": false,
+  "label": "active",
+  "traffic": {
+   "legit_window": 413,
+   "total_window": 414,
+   "legit_all": 1268,
+   "last_legit": "2026-10-31T11:51:51+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/hotels/{id}": {
+  "key": "GET /api/v3/hotels/{id}",
+  "method": "GET",
+  "template": "/api/v3/hotels/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "city",
+   "id",
+   "name",
+   "price"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/2",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/2",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/2",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/2",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/hotels/2",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 393,
+   "total_window": 394,
+   "legit_all": 1221,
+   "last_legit": "2026-10-31T12:15:53+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "2"
+   ],
+   [
+    "a1_agent",
+    "2"
+   ],
+   [
+    "a1_sub",
+    "2"
+   ],
+   [
+    "a2_admin",
+    "2"
+   ],
+   [
+    "a2_agent",
+    "2"
+   ]
+  ]
+ },
+ "POST /api/v3/travellers": {
+  "key": "POST /api/v3/travellers",
+  "method": "POST",
+  "template": "/api/v3/travellers",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "name": "Test Traveller",
+   "passport": "Z1234567",
+   "dob": "1990-01-01"
+  },
+  "headers": [],
+  "resp_keys": [
+   "traveller_id"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers",
+    "account": "a1_admin",
+    "body": {
+     "name": "Test Traveller",
+     "passport": "Z1234567",
+     "dob": "1990-01-01"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers",
+    "account": "a1_agent",
+    "body": {
+     "name": "Test Traveller",
+     "passport": "Z1234567",
+     "dob": "1990-01-01"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers",
+    "account": "a1_sub",
+    "body": {
+     "name": "Test Traveller",
+     "passport": "Z1234567",
+     "dob": "1990-01-01"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers",
+    "account": "a2_admin",
+    "body": {
+     "name": "Test Traveller",
+     "passport": "Z1234567",
+     "dob": "1990-01-01"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers",
+    "account": "a2_agent",
+    "body": {
+     "name": "Test Traveller",
+     "passport": "Z1234567",
+     "dob": "1990-01-01"
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 409,
+   "total_window": 409,
+   "legit_all": 1227,
+   "last_legit": "2026-10-31T10:50:18+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/travellers/{id}": {
+  "key": "GET /api/v3/travellers/{id}",
+  "method": "GET",
+  "template": "/api/v3/travellers/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "id",
+   "name",
+   "passport"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers/1002",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers/1009",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers/1015",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers/1021",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/travellers/1028",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 413,
+   "total_window": 413,
+   "legit_all": 1295,
+   "last_legit": "2026-10-31T12:16:00+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1002"
+   ],
+   [
+    "a1_agent",
+    "1009"
+   ],
+   [
+    "a1_sub",
+    "1015"
+   ],
+   [
+    "a2_admin",
+    "1021"
+   ],
+   [
+    "a2_agent",
+    "1028"
+   ]
+  ],
+  "id_field": "traveller_id"
+ },
+ "POST /api/v3/quotes": {
+  "key": "POST /api/v3/quotes",
+  "method": "POST",
+  "template": "/api/v3/quotes",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "hotel_id": 2,
+   "nights": 2,
+   "rooms": 1
+  },
+  "headers": [],
+  "resp_keys": [
+   "quote_id",
+   "total"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/quotes",
+    "account": "a1_admin",
+    "body": {
+     "hotel_id": 2,
+     "nights": 2,
+     "rooms": 1
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/quotes",
+    "account": "a1_agent",
+    "body": {
+     "hotel_id": 2,
+     "nights": 2,
+     "rooms": 1
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/quotes",
+    "account": "a1_sub",
+    "body": {
+     "hotel_id": 2,
+     "nights": 2,
+     "rooms": 1
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/quotes",
+    "account": "a2_admin",
+    "body": {
+     "hotel_id": 2,
+     "nights": 2,
+     "rooms": 1
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/quotes",
+    "account": "a2_agent",
+    "body": {
+     "hotel_id": 2,
+     "nights": 2,
+     "rooms": 1
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 6
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 430,
+   "total_window": 431,
+   "legit_all": 1293,
+   "last_legit": "2026-10-31T12:16:43+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "POST /api/v3/bookings": {
+  "key": "POST /api/v3/bookings",
+  "method": "POST",
+  "template": "/api/v3/bookings",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "quote_id": 1003,
+   "traveller_id": 1002,
+   "coupon": "WELCOME10"
+  },
+  "headers": [],
+  "resp_keys": [
+   "booking_id",
+   "invoice_id",
+   "status",
+   "total"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_admin",
+    "body": {
+     "quote_id": 1003,
+     "traveller_id": 1002
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_agent",
+    "body": {
+     "quote_id": 1010,
+     "traveller_id": 1009
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_sub",
+    "body": {
+     "quote_id": 1016,
+     "traveller_id": 1015
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a2_admin",
+    "body": {
+     "quote_id": 1022,
+     "traveller_id": 1021
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a2_agent",
+    "body": {
+     "quote_id": 1029,
+     "traveller_id": 1028
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 6
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 408,
+   "total_window": 408,
+   "legit_all": 1280,
+   "last_legit": "2026-10-31T11:52:25+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/bookings/{id}": {
+  "key": "GET /api/v3/bookings/{id}",
+  "method": "GET",
+  "template": "/api/v3/bookings/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "id",
+   "invoice_id",
+   "status",
+   "total",
+   "traveller_id"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1004",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1011",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1017",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1023",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1030",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 381,
+   "total_window": 381,
+   "legit_all": 1229,
+   "last_legit": "2026-10-31T11:17:30+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1004"
+   ],
+   [
+    "a1_agent",
+    "1011"
+   ],
+   [
+    "a1_sub",
+    "1017"
+   ],
+   [
+    "a2_admin",
+    "1023"
+   ],
+   [
+    "a2_agent",
+    "1030"
+   ]
+  ],
+  "id_field": "booking_id"
+ },
+ "POST /api/v3/bookings/{id}/pay": {
+  "key": "POST /api/v3/bookings/{id}/pay",
+  "method": "POST",
+  "template": "/api/v3/bookings/{id}/pay",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "method": "card",
+   "card_number": "4111111111111111"
+  },
+  "headers": [],
+  "resp_keys": [
+   "payment_id",
+   "status"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1004/pay",
+    "account": "a1_admin",
+    "body": {
+     "method": "card",
+     "card_number": "4111111111111111"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1011/pay",
+    "account": "a1_agent",
+    "body": {
+     "method": "card",
+     "card_number": "4111111111111111"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1017/pay",
+    "account": "a1_sub",
+    "body": {
+     "method": "card",
+     "card_number": "4111111111111111"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1023/pay",
+    "account": "a2_admin",
+    "body": {
+     "method": "card",
+     "card_number": "4111111111111111"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1030/pay",
+    "account": "a2_agent",
+    "body": {
+     "method": "card",
+     "card_number": "4111111111111111"
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 6
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 432,
+   "total_window": 433,
+   "legit_all": 1314,
+   "last_legit": "2026-10-31T12:15:20+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1004"
+   ],
+   [
+    "a1_agent",
+    "1011"
+   ],
+   [
+    "a1_sub",
+    "1017"
+   ],
+   [
+    "a2_admin",
+    "1023"
+   ],
+   [
+    "a2_agent",
+    "1030"
+   ],
+   [
+    "a2_agent",
+    "1034"
+   ]
+  ],
+  "id_field": "booking_id"
+ },
+ "POST /api/v3/bookings/{id}/confirm": {
+  "key": "POST /api/v3/bookings/{id}/confirm",
+  "method": "POST",
+  "template": "/api/v3/bookings/{id}/confirm",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {
+   "payment_id": 1006
+  },
+  "headers": [],
+  "resp_keys": [
+   "booking_id",
+   "status"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1004/confirm",
+    "account": "a1_admin",
+    "body": {
+     "payment_id": 1006
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1011/confirm",
+    "account": "a1_agent",
+    "body": {
+     "payment_id": 1013
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1017/confirm",
+    "account": "a1_sub",
+    "body": {
+     "payment_id": 1019
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1023/confirm",
+    "account": "a2_admin",
+    "body": {
+     "payment_id": 1025
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1030/confirm",
+    "account": "a2_agent",
+    "body": {
+     "payment_id": 1032
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 396,
+   "total_window": 396,
+   "legit_all": 1259,
+   "last_legit": "2026-10-31T12:15:35+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1004"
+   ],
+   [
+    "a1_agent",
+    "1011"
+   ],
+   [
+    "a1_sub",
+    "1017"
+   ],
+   [
+    "a2_admin",
+    "1023"
+   ],
+   [
+    "a2_agent",
+    "1030"
+   ]
+  ],
+  "id_field": "booking_id"
+ },
+ "GET /api/v3/bookings": {
+  "key": "GET /api/v3/bookings",
+  "method": "GET",
+  "template": "/api/v3/bookings",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "card_number",
+   "id",
+   "invoice_id",
+   "status",
+   "total",
+   "traveller_id"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": true,
+  "label": "active",
+  "traffic": {
+   "legit_window": 383,
+   "total_window": 384,
+   "legit_all": 1246,
+   "last_legit": "2026-10-31T11:52:54+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/invoices/{id}": {
+  "key": "GET /api/v3/invoices/{id}",
+  "method": "GET",
+  "template": "/api/v3/invoices/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "amount",
+   "billing_email",
+   "booking_id",
+   "id"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/invoices/1005",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/invoices/1012",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/invoices/1018",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/invoices/1024",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/invoices/1031",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 406,
+   "total_window": 406,
+   "legit_all": 1237,
+   "last_legit": "2026-10-31T11:53:00+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1005"
+   ],
+   [
+    "a1_agent",
+    "1012"
+   ],
+   [
+    "a1_sub",
+    "1018"
+   ],
+   [
+    "a2_admin",
+    "1024"
+   ],
+   [
+    "a2_agent",
+    "1031"
+   ]
+  ],
+  "id_field": "invoice_id"
+ },
+ "GET /api/v3/vouchers/{id}": {
+  "key": "GET /api/v3/vouchers/{id}",
+  "method": "GET",
+  "template": "/api/v3/vouchers/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {
+   "note": "Late checkin"
+  },
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/vouchers/1004?note=Late%20checkin",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/vouchers/1011?note=Late%20checkin",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/vouchers/1017?note=Late%20checkin",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/vouchers/1023?note=Late%20checkin",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/vouchers/1030?note=Late%20checkin",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 401,
+   "total_window": 401,
+   "legit_all": 1264,
+   "last_legit": "2026-10-31T11:52:03+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_admin",
+    "1004"
+   ],
+   [
+    "a1_agent",
+    "1011"
+   ],
+   [
+    "a1_sub",
+    "1017"
+   ],
+   [
+    "a2_admin",
+    "1023"
+   ],
+   [
+    "a2_agent",
+    "1030"
+   ]
+  ],
+  "id_field": "booking_id"
+ },
+ "GET /api/v3/wallet": {
+  "key": "GET /api/v3/wallet",
+  "method": "GET",
+  "template": "/api/v3/wallet",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "balance"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/wallet",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/wallet",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/wallet",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/wallet",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/wallet",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": true,
+  "label": "active",
+  "traffic": {
+   "legit_window": 400,
+   "total_window": 400,
+   "legit_all": 1256,
+   "last_legit": "2026-10-31T11:16:51+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/agency/profile": {
+  "key": "GET /api/v3/agency/profile",
+  "method": "GET",
+  "template": "/api/v3/agency/profile",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "bank_account",
+   "email",
+   "name"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/profile",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/profile",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/profile",
+    "account": "a1_sub",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/profile",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/profile",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": true,
+  "label": "active",
+  "traffic": {
+   "legit_window": 434,
+   "total_window": 434,
+   "legit_all": 1293,
+   "last_legit": "2026-10-31T11:04:46+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/agency/users": {
+  "key": "GET /api/v3/agency/users",
+  "method": "GET",
+  "template": "/api/v3/agency/users",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a2_admin"
+  ],
+  "roles": [
+   "agency_admin"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "role",
+   "username"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/users",
+    "account": "a1_admin",
+    "body": null,
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/users",
+    "account": "a2_admin",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 2
+  },
+  "auth_required": true,
+  "label": "active",
+  "traffic": {
+   "legit_window": 401,
+   "total_window": 402,
+   "legit_all": 1280,
+   "last_legit": "2026-10-31T11:53:33+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "PUT /api/v3/agency/email": {
+  "key": "PUT /api/v3/agency/email",
+  "method": "PUT",
+  "template": "/api/v3/agency/email",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a2_admin"
+  ],
+  "roles": [
+   "agency_admin"
+  ],
+  "query": {},
+  "body": {
+   "email": "ops1@agency.test",
+   "current_password": "Pass#1"
+  },
+  "headers": [],
+  "resp_keys": [
+   "ok"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/email",
+    "account": "a1_admin",
+    "body": {
+     "email": "ops1@agency.test",
+     "current_password": "Pass#1"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/agency/email",
+    "account": "a2_admin",
+    "body": {
+     "email": "ops2@agency.test",
+     "current_password": "Pass#4"
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 2
+  },
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "POST /api/v3/supplier/webhooks": {
+  "key": "POST /api/v3/supplier/webhooks",
+  "method": "POST",
+  "template": "/api/v3/supplier/webhooks",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a2_admin"
+  ],
+  "roles": [
+   "agency_admin"
+  ],
+  "query": {},
+  "body": {
+   "url": "https://hooks.tbo-partners.test/booking"
+  },
+  "headers": [],
+  "resp_keys": [
+   "verify_status",
+   "webhook_id"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/supplier/webhooks",
+    "account": "a1_admin",
+    "body": {
+     "url": "https://hooks.tbo-partners.test/booking"
+    },
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/supplier/webhooks",
+    "account": "a2_admin",
+    "body": {
+     "url": "https://hooks.tbo-partners.test/booking"
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 2
+  },
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "POST /api/v3/auth/logout": {
+  "key": "POST /api/v3/auth/logout",
+  "method": "POST",
+  "template": "/api/v3/auth/logout",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a1_admin",
+   "a1_agent",
+   "a1_sub",
+   "a2_admin",
+   "a2_agent"
+  ],
+  "roles": [
+   "agency_admin",
+   "agent",
+   "sub_agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "ok"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/logout",
+    "account": "a1_admin",
+    "body": {},
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/logout",
+    "account": "a1_agent",
+    "body": {},
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/logout",
+    "account": "a1_sub",
+    "body": {},
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/logout",
+    "account": "a2_admin",
+    "body": {},
+    "status": 200
+   },
+   {
+    "url": "http://127.0.0.1:8100/api/v3/auth/logout",
+    "account": "a2_agent",
+    "body": {},
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 5
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 409,
+   "total_window": 410,
+   "legit_all": 1264,
+   "last_legit": "2026-10-31T11:05:17+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "POST /api/v3/bookings/{id}/cancel": {
+  "key": "POST /api/v3/bookings/{id}/cancel",
+  "method": "POST",
+  "template": "/api/v3/bookings/{id}/cancel",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a2_agent"
+  ],
+  "roles": [
+   "agent"
+  ],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "booking_id",
+   "status"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/1034/cancel",
+    "account": "a2_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 421,
+   "total_window": 422,
+   "legit_all": 1303,
+   "last_legit": "2026-10-31T11:51:25+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a2_agent",
+    "1034"
+   ]
+  ],
+  "id_field": "booking_id"
+ },
+ "POST /api/v3/refunds": {
+  "key": "POST /api/v3/refunds",
+  "method": "POST",
+  "template": "/api/v3/refunds",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "har",
+   "js",
+   "log"
+  ],
+  "accounts": [
+   "a2_agent"
+  ],
+  "roles": [
+   "agent"
+  ],
+  "query": {},
+  "body": {
+   "booking_id": 1034
+  },
+  "headers": [],
+  "resp_keys": [
+   "amount",
+   "refund_id"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/refunds",
+    "account": "a2_agent",
+    "body": {
+     "booking_id": 1034
+    },
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": null,
+  "label": "active",
+  "traffic": {
+   "legit_window": 430,
+   "total_window": 430,
+   "legit_all": 1321,
+   "last_legit": "2026-10-31T11:06:11+00:00",
+   "clients": [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 1",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "PATCH /api/v3/me": {
+  "key": "PATCH /api/v3/me",
+  "method": "PATCH",
+  "template": "/api/v3/me",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "POST /api/v3/agency/users": {
+  "key": "POST /api/v3/agency/users",
+  "method": "POST",
+  "template": "/api/v3/agency/users",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "PUT /api/v3/agency/bank-account": {
+  "key": "PUT /api/v3/agency/bank-account",
+  "method": "PUT",
+  "template": "/api/v3/agency/bank-account",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "GET /api/v3/auth/callback": {
+  "key": "GET /api/v3/auth/callback",
+  "method": "GET",
+  "template": "/api/v3/auth/callback",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {
+   "next": "tw"
+  },
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": false,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": []
+ },
+ "GET /api/v1/travellers/{id}": {
+  "key": "GET /api/v1/travellers/{id}",
+  "method": "GET",
+  "template": "/api/v1/travellers/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "dob",
+   "id",
+   "name",
+   "passport"
+  ],
+  "id_types": [
+   "int"
+  ],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v1/travellers/1039",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": null,
+  "label": "zombie",
+  "traffic": {
+   "legit_window": 0,
+   "total_window": 46,
+   "legit_all": 424,
+   "last_legit": "2026-08-22T21:19:54+00:00",
+   "clients": [
+    "TripVulnApp/1.2 (Android 11)"
+   ],
+   "infra_window": 0
+  },
+  "id_values": [
+   [
+    "a1_agent",
+    "1039"
+   ]
+  ]
+ },
+ "GET /api/v3/bookings/export": {
+  "key": "GET /api/v3/bookings/export",
+  "method": "GET",
+  "template": "/api/v3/bookings/export",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "agency_id",
+   "id",
+   "status",
+   "total"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/api/v3/bookings/export",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": true,
+  "label": "shadow",
+  "traffic": {
+   "legit_window": 30,
+   "total_window": 30,
+   "legit_all": 90,
+   "last_legit": "2026-10-31T02:00:07+00:00",
+   "clients": [
+    "python-requests/2.31"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /health": {
+  "key": "GET /health",
+  "method": "GET",
+  "template": "/health",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "ok"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/health",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": false,
+  "label": "infra",
+  "traffic": {
+   "legit_window": 0,
+   "total_window": 4321,
+   "legit_all": 0,
+   "last_legit": null,
+   "clients": [],
+   "infra_window": 4321
+  },
+  "id_values": []
+ },
+ "GET /internal/debug/config": {
+  "key": "GET /internal/debug/config",
+  "method": "GET",
+  "template": "/internal/debug/config",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "db",
+   "debug",
+   "jwt_secret"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/internal/debug/config",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": false,
+  "label": "zombie",
+  "traffic": {
+   "legit_window": 0,
+   "total_window": 41,
+   "legit_all": 0,
+   "last_legit": null,
+   "clients": [],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /openapi.json": {
+  "key": "GET /openapi.json",
+  "method": "GET",
+  "template": "/openapi.json",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "probe"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [
+   "components",
+   "components.schemas",
+   "components.schemas.HTTPValidationError",
+   "components.schemas.HTTPValidationError.properties",
+   "components.schemas.HTTPValidationError.properties.detail",
+   "components.schemas.HTTPValidationError.properties.detail.items",
+   "components.schemas.HTTPValidationError.properties.detail.items.$ref",
+   "components.schemas.HTTPValidationError.properties.detail.title",
+   "components.schemas.HTTPValidationError.properties.detail.type",
+   "components.schemas.HTTPValidationError.title",
+   "components.schemas.HTTPValidationError.type",
+   "components.schemas.ValidationError",
+   "components.schemas.ValidationError.properties",
+   "components.schemas.ValidationError.properties.ctx",
+   "components.schemas.ValidationError.properties.ctx.title",
+   "components.schemas.ValidationError.properties.ctx.type",
+   "components.schemas.ValidationError.properties.input",
+   "components.schemas.ValidationError.properties.input.title",
+   "components.schemas.ValidationError.properties.loc",
+   "components.schemas.ValidationError.properties.loc.items",
+   "components.schemas.ValidationError.properties.loc.items.anyOf",
+   "components.schemas.ValidationError.properties.loc.items.anyOf.type",
+   "components.schemas.ValidationError.properties.loc.title",
+   "components.schemas.ValidationError.properties.loc.type",
+   "components.schemas.ValidationError.properties.msg",
+   "components.schemas.ValidationError.properties.msg.title",
+   "components.schemas.ValidationError.properties.msg.type",
+   "components.schemas.ValidationError.properties.type",
+   "components.schemas.ValidationError.properties.type.title",
+   "components.schemas.ValidationError.properties.type.type",
+   "components.schemas.ValidationError.required",
+   "components.schemas.ValidationError.title",
+   "components.schemas.ValidationError.type",
+   "info",
+   "info.title",
+   "info.version",
+   "openapi",
+   "paths",
+   "paths./",
+   "paths./.get",
+   "paths./.get.operationId",
+   "paths./.get.responses",
+   "paths./.get.responses.200",
+   "paths./.get.responses.200.content",
+   "paths./.get.responses.200.content.text/html",
+   "paths./.get.responses.200.content.text/html.schema",
+   "paths./.get.responses.200.content.text/html.schema.type",
+   "paths./.get.responses.200.description",
+   "paths./.get.summary",
+   "paths./api/v1/travellers/{tid}",
+   "paths./api/v1/travellers/{tid}.get",
+   "paths./api/v1/travellers/{tid}.get.operationId",
+   "paths./api/v1/travellers/{tid}.get.parameters",
+   "paths./api/v1/travellers/{tid}.get.parameters.in",
+   "paths./api/v1/travellers/{tid}.get.parameters.name",
+   "paths./api/v1/travellers/{tid}.get.parameters.required",
+   "paths./api/v1/travellers/{tid}.get.parameters.schema",
+   "paths./api/v1/travellers/{tid}.get.parameters.schema.title",
+   "paths./api/v1/travellers/{tid}.get.parameters.schema.type",
+   "paths./api/v1/travellers/{tid}.get.responses",
+   "paths./api/v1/travellers/{tid}.get.responses.200",
+   "paths./api/v1/travellers/{tid}.get.responses.200.content",
+   "paths./api/v1/travellers/{tid}.get.responses.200.content.application/json",
+   "paths./api/v1/travellers/{tid}.get.responses.200.content.application/json.schema",
+   "paths./api/v1/travellers/{tid}.get.responses.200.description",
+   "paths./api/v1/travellers/{tid}.get.responses.422",
+   "paths./api/v1/travellers/{tid}.get.responses.422.content",
+   "paths./api/v1/travellers/{tid}.get.responses.422.content.application/json",
+   "paths./api/v1/travellers/{tid}.get.responses.422.content.application/json.schema",
+   "paths./api/v1/travellers/{tid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v1/travellers/{tid}.get.responses.422.description",
+   "paths./api/v1/travellers/{tid}.get.summary",
+   "paths./api/v3/agency/bank-account",
+   "paths./api/v3/agency/bank-account.put",
+   "paths./api/v3/agency/bank-account.put.operationId",
+   "paths./api/v3/agency/bank-account.put.responses",
+   "paths./api/v3/agency/bank-account.put.responses.200",
+   "paths./api/v3/agency/bank-account.put.responses.200.content",
+   "paths./api/v3/agency/bank-account.put.responses.200.content.application/json",
+   "paths./api/v3/agency/bank-account.put.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/bank-account.put.responses.200.description",
+   "paths./api/v3/agency/bank-account.put.summary",
+   "paths./api/v3/agency/email",
+   "paths./api/v3/agency/email.put",
+   "paths./api/v3/agency/email.put.operationId",
+   "paths./api/v3/agency/email.put.responses",
+   "paths./api/v3/agency/email.put.responses.200",
+   "paths./api/v3/agency/email.put.responses.200.content",
+   "paths./api/v3/agency/email.put.responses.200.content.application/json",
+   "paths./api/v3/agency/email.put.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/email.put.responses.200.description",
+   "paths./api/v3/agency/email.put.summary",
+   "paths./api/v3/agency/profile",
+   "paths./api/v3/agency/profile.get",
+   "paths./api/v3/agency/profile.get.operationId",
+   "paths./api/v3/agency/profile.get.parameters",
+   "paths./api/v3/agency/profile.get.parameters.in",
+   "paths./api/v3/agency/profile.get.parameters.name",
+   "paths./api/v3/agency/profile.get.parameters.required",
+   "paths./api/v3/agency/profile.get.parameters.schema",
+   "paths./api/v3/agency/profile.get.parameters.schema.anyOf",
+   "paths./api/v3/agency/profile.get.parameters.schema.anyOf.type",
+   "paths./api/v3/agency/profile.get.parameters.schema.title",
+   "paths./api/v3/agency/profile.get.responses",
+   "paths./api/v3/agency/profile.get.responses.200",
+   "paths./api/v3/agency/profile.get.responses.200.content",
+   "paths./api/v3/agency/profile.get.responses.200.content.application/json",
+   "paths./api/v3/agency/profile.get.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/profile.get.responses.200.description",
+   "paths./api/v3/agency/profile.get.responses.422",
+   "paths./api/v3/agency/profile.get.responses.422.content",
+   "paths./api/v3/agency/profile.get.responses.422.content.application/json",
+   "paths./api/v3/agency/profile.get.responses.422.content.application/json.schema",
+   "paths./api/v3/agency/profile.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/agency/profile.get.responses.422.description",
+   "paths./api/v3/agency/profile.get.summary",
+   "paths./api/v3/agency/users",
+   "paths./api/v3/agency/users.get",
+   "paths./api/v3/agency/users.get.operationId",
+   "paths./api/v3/agency/users.get.responses",
+   "paths./api/v3/agency/users.get.responses.200",
+   "paths./api/v3/agency/users.get.responses.200.content",
+   "paths./api/v3/agency/users.get.responses.200.content.application/json",
+   "paths./api/v3/agency/users.get.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/users.get.responses.200.description",
+   "paths./api/v3/agency/users.get.summary",
+   "paths./api/v3/agency/users.post",
+   "paths./api/v3/agency/users.post.operationId",
+   "paths./api/v3/agency/users.post.responses",
+   "paths./api/v3/agency/users.post.responses.200",
+   "paths./api/v3/agency/users.post.responses.200.content",
+   "paths./api/v3/agency/users.post.responses.200.content.application/json",
+   "paths./api/v3/agency/users.post.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/users.post.responses.200.description",
+   "paths./api/v3/agency/users.post.summary",
+   "paths./api/v3/agency/users/{username}",
+   "paths./api/v3/agency/users/{username}.delete",
+   "paths./api/v3/agency/users/{username}.delete.operationId",
+   "paths./api/v3/agency/users/{username}.delete.parameters",
+   "paths./api/v3/agency/users/{username}.delete.parameters.in",
+   "paths./api/v3/agency/users/{username}.delete.parameters.name",
+   "paths./api/v3/agency/users/{username}.delete.parameters.required",
+   "paths./api/v3/agency/users/{username}.delete.parameters.schema",
+   "paths./api/v3/agency/users/{username}.delete.parameters.schema.title",
+   "paths./api/v3/agency/users/{username}.delete.parameters.schema.type",
+   "paths./api/v3/agency/users/{username}.delete.responses",
+   "paths./api/v3/agency/users/{username}.delete.responses.200",
+   "paths./api/v3/agency/users/{username}.delete.responses.200.content",
+   "paths./api/v3/agency/users/{username}.delete.responses.200.content.application/json",
+   "paths./api/v3/agency/users/{username}.delete.responses.200.content.application/json.schema",
+   "paths./api/v3/agency/users/{username}.delete.responses.200.description",
+   "paths./api/v3/agency/users/{username}.delete.responses.422",
+   "paths./api/v3/agency/users/{username}.delete.responses.422.content",
+   "paths./api/v3/agency/users/{username}.delete.responses.422.content.application/json",
+   "paths./api/v3/agency/users/{username}.delete.responses.422.content.application/json.schema",
+   "paths./api/v3/agency/users/{username}.delete.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/agency/users/{username}.delete.responses.422.description",
+   "paths./api/v3/agency/users/{username}.delete.summary",
+   "paths./api/v3/auth/callback",
+   "paths./api/v3/auth/callback.get",
+   "paths./api/v3/auth/callback.get.operationId",
+   "paths./api/v3/auth/callback.get.parameters",
+   "paths./api/v3/auth/callback.get.parameters.in",
+   "paths./api/v3/auth/callback.get.parameters.name",
+   "paths./api/v3/auth/callback.get.parameters.required",
+   "paths./api/v3/auth/callback.get.parameters.schema",
+   "paths./api/v3/auth/callback.get.parameters.schema.default",
+   "paths./api/v3/auth/callback.get.parameters.schema.title",
+   "paths./api/v3/auth/callback.get.parameters.schema.type",
+   "paths./api/v3/auth/callback.get.responses",
+   "paths./api/v3/auth/callback.get.responses.200",
+   "paths./api/v3/auth/callback.get.responses.200.content",
+   "paths./api/v3/auth/callback.get.responses.200.content.application/json",
+   "paths./api/v3/auth/callback.get.responses.200.content.application/json.schema",
+   "paths./api/v3/auth/callback.get.responses.200.description",
+   "paths./api/v3/auth/callback.get.responses.422",
+   "paths./api/v3/auth/callback.get.responses.422.content",
+   "paths./api/v3/auth/callback.get.responses.422.content.application/json",
+   "paths./api/v3/auth/callback.get.responses.422.content.application/json.schema",
+   "paths./api/v3/auth/callback.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/auth/callback.get.responses.422.description",
+   "paths./api/v3/auth/callback.get.summary",
+   "paths./api/v3/auth/login",
+   "paths./api/v3/auth/login.post",
+   "paths./api/v3/auth/login.post.operationId",
+   "paths./api/v3/auth/login.post.responses",
+   "paths./api/v3/auth/login.post.responses.200",
+   "paths./api/v3/auth/login.post.responses.200.content",
+   "paths./api/v3/auth/login.post.responses.200.content.application/json",
+   "paths./api/v3/auth/login.post.responses.200.content.application/json.schema",
+   "paths./api/v3/auth/login.post.responses.200.description",
+   "paths./api/v3/auth/login.post.summary",
+   "paths./api/v3/auth/logout",
+   "paths./api/v3/auth/logout.post",
+   "paths./api/v3/auth/logout.post.operationId",
+   "paths./api/v3/auth/logout.post.responses",
+   "paths./api/v3/auth/logout.post.responses.200",
+   "paths./api/v3/auth/logout.post.responses.200.content",
+   "paths./api/v3/auth/logout.post.responses.200.content.application/json",
+   "paths./api/v3/auth/logout.post.responses.200.content.application/json.schema",
+   "paths./api/v3/auth/logout.post.responses.200.description",
+   "paths./api/v3/auth/logout.post.summary",
+   "paths./api/v3/bookings",
+   "paths./api/v3/bookings.get",
+   "paths./api/v3/bookings.get.operationId",
+   "paths./api/v3/bookings.get.responses",
+   "paths./api/v3/bookings.get.responses.200",
+   "paths./api/v3/bookings.get.responses.200.content",
+   "paths./api/v3/bookings.get.responses.200.content.application/json",
+   "paths./api/v3/bookings.get.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings.get.responses.200.description",
+   "paths./api/v3/bookings.get.summary",
+   "paths./api/v3/bookings.post",
+   "paths./api/v3/bookings.post.operationId",
+   "paths./api/v3/bookings.post.responses",
+   "paths./api/v3/bookings.post.responses.200",
+   "paths./api/v3/bookings.post.responses.200.content",
+   "paths./api/v3/bookings.post.responses.200.content.application/json",
+   "paths./api/v3/bookings.post.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings.post.responses.200.description",
+   "paths./api/v3/bookings.post.summary",
+   "paths./api/v3/bookings/export",
+   "paths./api/v3/bookings/export.get",
+   "paths./api/v3/bookings/export.get.operationId",
+   "paths./api/v3/bookings/export.get.responses",
+   "paths./api/v3/bookings/export.get.responses.200",
+   "paths./api/v3/bookings/export.get.responses.200.content",
+   "paths./api/v3/bookings/export.get.responses.200.content.application/json",
+   "paths./api/v3/bookings/export.get.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings/export.get.responses.200.description",
+   "paths./api/v3/bookings/export.get.summary",
+   "paths./api/v3/bookings/{bid}",
+   "paths./api/v3/bookings/{bid}.get",
+   "paths./api/v3/bookings/{bid}.get.operationId",
+   "paths./api/v3/bookings/{bid}.get.parameters",
+   "paths./api/v3/bookings/{bid}.get.parameters.in",
+   "paths./api/v3/bookings/{bid}.get.parameters.name",
+   "paths./api/v3/bookings/{bid}.get.parameters.required",
+   "paths./api/v3/bookings/{bid}.get.parameters.schema",
+   "paths./api/v3/bookings/{bid}.get.parameters.schema.title",
+   "paths./api/v3/bookings/{bid}.get.parameters.schema.type",
+   "paths./api/v3/bookings/{bid}.get.responses",
+   "paths./api/v3/bookings/{bid}.get.responses.200",
+   "paths./api/v3/bookings/{bid}.get.responses.200.content",
+   "paths./api/v3/bookings/{bid}.get.responses.200.content.application/json",
+   "paths./api/v3/bookings/{bid}.get.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}.get.responses.200.description",
+   "paths./api/v3/bookings/{bid}.get.responses.422",
+   "paths./api/v3/bookings/{bid}.get.responses.422.content",
+   "paths./api/v3/bookings/{bid}.get.responses.422.content.application/json",
+   "paths./api/v3/bookings/{bid}.get.responses.422.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/bookings/{bid}.get.responses.422.description",
+   "paths./api/v3/bookings/{bid}.get.summary",
+   "paths./api/v3/bookings/{bid}/cancel",
+   "paths./api/v3/bookings/{bid}/cancel.post",
+   "paths./api/v3/bookings/{bid}/cancel.post.operationId",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.in",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.name",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.required",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.schema",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.schema.title",
+   "paths./api/v3/bookings/{bid}/cancel.post.parameters.schema.type",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.200",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.200.content",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.200.content.application/json",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.200.description",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422.content",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422.content.application/json",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/bookings/{bid}/cancel.post.responses.422.description",
+   "paths./api/v3/bookings/{bid}/cancel.post.summary",
+   "paths./api/v3/bookings/{bid}/confirm",
+   "paths./api/v3/bookings/{bid}/confirm.post",
+   "paths./api/v3/bookings/{bid}/confirm.post.operationId",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.in",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.name",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.required",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.schema",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.schema.title",
+   "paths./api/v3/bookings/{bid}/confirm.post.parameters.schema.type",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.200",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.200.content",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.200.content.application/json",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.200.description",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422.content",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422.content.application/json",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/bookings/{bid}/confirm.post.responses.422.description",
+   "paths./api/v3/bookings/{bid}/confirm.post.summary",
+   "paths./api/v3/bookings/{bid}/pay",
+   "paths./api/v3/bookings/{bid}/pay.post",
+   "paths./api/v3/bookings/{bid}/pay.post.operationId",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.in",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.name",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.required",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.schema",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.schema.title",
+   "paths./api/v3/bookings/{bid}/pay.post.parameters.schema.type",
+   "paths./api/v3/bookings/{bid}/pay.post.responses",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.200",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.200.content",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.200.content.application/json",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.200.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.200.description",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422.content",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422.content.application/json",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422.content.application/json.schema",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/bookings/{bid}/pay.post.responses.422.description",
+   "paths./api/v3/bookings/{bid}/pay.post.summary",
+   "paths./api/v3/hotels/search",
+   "paths./api/v3/hotels/search.get",
+   "paths./api/v3/hotels/search.get.operationId",
+   "paths./api/v3/hotels/search.get.parameters",
+   "paths./api/v3/hotels/search.get.parameters.in",
+   "paths./api/v3/hotels/search.get.parameters.name",
+   "paths./api/v3/hotels/search.get.parameters.required",
+   "paths./api/v3/hotels/search.get.parameters.schema",
+   "paths./api/v3/hotels/search.get.parameters.schema.default",
+   "paths./api/v3/hotels/search.get.parameters.schema.title",
+   "paths./api/v3/hotels/search.get.parameters.schema.type",
+   "paths./api/v3/hotels/search.get.responses",
+   "paths./api/v3/hotels/search.get.responses.200",
+   "paths./api/v3/hotels/search.get.responses.200.content",
+   "paths./api/v3/hotels/search.get.responses.200.content.application/json",
+   "paths./api/v3/hotels/search.get.responses.200.content.application/json.schema",
+   "paths./api/v3/hotels/search.get.responses.200.description",
+   "paths./api/v3/hotels/search.get.responses.422",
+   "paths./api/v3/hotels/search.get.responses.422.content",
+   "paths./api/v3/hotels/search.get.responses.422.content.application/json",
+   "paths./api/v3/hotels/search.get.responses.422.content.application/json.schema",
+   "paths./api/v3/hotels/search.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/hotels/search.get.responses.422.description",
+   "paths./api/v3/hotels/search.get.summary",
+   "paths./api/v3/hotels/{hid}",
+   "paths./api/v3/hotels/{hid}.get",
+   "paths./api/v3/hotels/{hid}.get.operationId",
+   "paths./api/v3/hotels/{hid}.get.parameters",
+   "paths./api/v3/hotels/{hid}.get.parameters.in",
+   "paths./api/v3/hotels/{hid}.get.parameters.name",
+   "paths./api/v3/hotels/{hid}.get.parameters.required",
+   "paths./api/v3/hotels/{hid}.get.parameters.schema",
+   "paths./api/v3/hotels/{hid}.get.parameters.schema.title",
+   "paths./api/v3/hotels/{hid}.get.parameters.schema.type",
+   "paths./api/v3/hotels/{hid}.get.responses",
+   "paths./api/v3/hotels/{hid}.get.responses.200",
+   "paths./api/v3/hotels/{hid}.get.responses.200.content",
+   "paths./api/v3/hotels/{hid}.get.responses.200.content.application/json",
+   "paths./api/v3/hotels/{hid}.get.responses.200.content.application/json.schema",
+   "paths./api/v3/hotels/{hid}.get.responses.200.description",
+   "paths./api/v3/hotels/{hid}.get.responses.422",
+   "paths./api/v3/hotels/{hid}.get.responses.422.content",
+   "paths./api/v3/hotels/{hid}.get.responses.422.content.application/json",
+   "paths./api/v3/hotels/{hid}.get.responses.422.content.application/json.schema",
+   "paths./api/v3/hotels/{hid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/hotels/{hid}.get.responses.422.description",
+   "paths./api/v3/hotels/{hid}.get.summary",
+   "paths./api/v3/invoices/{iid}",
+   "paths./api/v3/invoices/{iid}.get",
+   "paths./api/v3/invoices/{iid}.get.operationId",
+   "paths./api/v3/invoices/{iid}.get.parameters",
+   "paths./api/v3/invoices/{iid}.get.parameters.in",
+   "paths./api/v3/invoices/{iid}.get.parameters.name",
+   "paths./api/v3/invoices/{iid}.get.parameters.required",
+   "paths./api/v3/invoices/{iid}.get.parameters.schema",
+   "paths./api/v3/invoices/{iid}.get.parameters.schema.title",
+   "paths./api/v3/invoices/{iid}.get.parameters.schema.type",
+   "paths./api/v3/invoices/{iid}.get.responses",
+   "paths./api/v3/invoices/{iid}.get.responses.200",
+   "paths./api/v3/invoices/{iid}.get.responses.200.content",
+   "paths./api/v3/invoices/{iid}.get.responses.200.content.application/json",
+   "paths./api/v3/invoices/{iid}.get.responses.200.content.application/json.schema",
+   "paths./api/v3/invoices/{iid}.get.responses.200.description",
+   "paths./api/v3/invoices/{iid}.get.responses.422",
+   "paths./api/v3/invoices/{iid}.get.responses.422.content",
+   "paths./api/v3/invoices/{iid}.get.responses.422.content.application/json",
+   "paths./api/v3/invoices/{iid}.get.responses.422.content.application/json.schema",
+   "paths./api/v3/invoices/{iid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/invoices/{iid}.get.responses.422.description",
+   "paths./api/v3/invoices/{iid}.get.summary",
+   "paths./api/v3/me",
+   "paths./api/v3/me.get",
+   "paths./api/v3/me.get.operationId",
+   "paths./api/v3/me.get.responses",
+   "paths./api/v3/me.get.responses.200",
+   "paths./api/v3/me.get.responses.200.content",
+   "paths./api/v3/me.get.responses.200.content.application/json",
+   "paths./api/v3/me.get.responses.200.content.application/json.schema",
+   "paths./api/v3/me.get.responses.200.description",
+   "paths./api/v3/me.get.summary",
+   "paths./api/v3/me.patch",
+   "paths./api/v3/me.patch.operationId",
+   "paths./api/v3/me.patch.responses",
+   "paths./api/v3/me.patch.responses.200",
+   "paths./api/v3/me.patch.responses.200.content",
+   "paths./api/v3/me.patch.responses.200.content.application/json",
+   "paths./api/v3/me.patch.responses.200.content.application/json.schema",
+   "paths./api/v3/me.patch.responses.200.description",
+   "paths./api/v3/me.patch.summary",
+   "paths./api/v3/quotes",
+   "paths./api/v3/quotes.post",
+   "paths./api/v3/quotes.post.operationId",
+   "paths./api/v3/quotes.post.responses",
+   "paths./api/v3/quotes.post.responses.200",
+   "paths./api/v3/quotes.post.responses.200.content",
+   "paths./api/v3/quotes.post.responses.200.content.application/json",
+   "paths./api/v3/quotes.post.responses.200.content.application/json.schema",
+   "paths./api/v3/quotes.post.responses.200.description",
+   "paths./api/v3/quotes.post.summary",
+   "paths./api/v3/refunds",
+   "paths./api/v3/refunds.post",
+   "paths./api/v3/refunds.post.operationId",
+   "paths./api/v3/refunds.post.responses",
+   "paths./api/v3/refunds.post.responses.200",
+   "paths./api/v3/refunds.post.responses.200.content",
+   "paths./api/v3/refunds.post.responses.200.content.application/json",
+   "paths./api/v3/refunds.post.responses.200.content.application/json.schema",
+   "paths./api/v3/refunds.post.responses.200.description",
+   "paths./api/v3/refunds.post.summary",
+   "paths./api/v3/supplier/webhooks",
+   "paths./api/v3/supplier/webhooks.post",
+   "paths./api/v3/supplier/webhooks.post.operationId",
+   "paths./api/v3/supplier/webhooks.post.responses",
+   "paths./api/v3/supplier/webhooks.post.responses.200",
+   "paths./api/v3/supplier/webhooks.post.responses.200.content",
+   "paths./api/v3/supplier/webhooks.post.responses.200.content.application/json",
+   "paths./api/v3/supplier/webhooks.post.responses.200.content.application/json.schema",
+   "paths./api/v3/supplier/webhooks.post.responses.200.description",
+   "paths./api/v3/supplier/webhooks.post.summary",
+   "paths./api/v3/travellers",
+   "paths./api/v3/travellers.post",
+   "paths./api/v3/travellers.post.operationId",
+   "paths./api/v3/travellers.post.responses",
+   "paths./api/v3/travellers.post.responses.200",
+   "paths./api/v3/travellers.post.responses.200.content",
+   "paths./api/v3/travellers.post.responses.200.content.application/json",
+   "paths./api/v3/travellers.post.responses.200.content.application/json.schema",
+   "paths./api/v3/travellers.post.responses.200.description",
+   "paths./api/v3/travellers.post.summary",
+   "paths./api/v3/travellers/{tid}",
+   "paths./api/v3/travellers/{tid}.get",
+   "paths./api/v3/travellers/{tid}.get.operationId",
+   "paths./api/v3/travellers/{tid}.get.parameters",
+   "paths./api/v3/travellers/{tid}.get.parameters.in",
+   "paths./api/v3/travellers/{tid}.get.parameters.name",
+   "paths./api/v3/travellers/{tid}.get.parameters.required",
+   "paths./api/v3/travellers/{tid}.get.parameters.schema",
+   "paths./api/v3/travellers/{tid}.get.parameters.schema.title",
+   "paths./api/v3/travellers/{tid}.get.parameters.schema.type",
+   "paths./api/v3/travellers/{tid}.get.responses",
+   "paths./api/v3/travellers/{tid}.get.responses.200",
+   "paths./api/v3/travellers/{tid}.get.responses.200.content",
+   "paths./api/v3/travellers/{tid}.get.responses.200.content.application/json",
+   "paths./api/v3/travellers/{tid}.get.responses.200.content.application/json.schema",
+   "paths./api/v3/travellers/{tid}.get.responses.200.description",
+   "paths./api/v3/travellers/{tid}.get.responses.422",
+   "paths./api/v3/travellers/{tid}.get.responses.422.content",
+   "paths./api/v3/travellers/{tid}.get.responses.422.content.application/json",
+   "paths./api/v3/travellers/{tid}.get.responses.422.content.application/json.schema",
+   "paths./api/v3/travellers/{tid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/travellers/{tid}.get.responses.422.description",
+   "paths./api/v3/travellers/{tid}.get.summary",
+   "paths./api/v3/vouchers/{bid}",
+   "paths./api/v3/vouchers/{bid}.get",
+   "paths./api/v3/vouchers/{bid}.get.operationId",
+   "paths./api/v3/vouchers/{bid}.get.parameters",
+   "paths./api/v3/vouchers/{bid}.get.parameters.in",
+   "paths./api/v3/vouchers/{bid}.get.parameters.name",
+   "paths./api/v3/vouchers/{bid}.get.parameters.required",
+   "paths./api/v3/vouchers/{bid}.get.parameters.schema",
+   "paths./api/v3/vouchers/{bid}.get.parameters.schema.default",
+   "paths./api/v3/vouchers/{bid}.get.parameters.schema.title",
+   "paths./api/v3/vouchers/{bid}.get.parameters.schema.type",
+   "paths./api/v3/vouchers/{bid}.get.responses",
+   "paths./api/v3/vouchers/{bid}.get.responses.200",
+   "paths./api/v3/vouchers/{bid}.get.responses.200.content",
+   "paths./api/v3/vouchers/{bid}.get.responses.200.content.application/json",
+   "paths./api/v3/vouchers/{bid}.get.responses.200.content.application/json.schema",
+   "paths./api/v3/vouchers/{bid}.get.responses.200.description",
+   "paths./api/v3/vouchers/{bid}.get.responses.422",
+   "paths./api/v3/vouchers/{bid}.get.responses.422.content",
+   "paths./api/v3/vouchers/{bid}.get.responses.422.content.application/json",
+   "paths./api/v3/vouchers/{bid}.get.responses.422.content.application/json.schema",
+   "paths./api/v3/vouchers/{bid}.get.responses.422.content.application/json.schema.$ref",
+   "paths./api/v3/vouchers/{bid}.get.responses.422.description",
+   "paths./api/v3/vouchers/{bid}.get.summary",
+   "paths./api/v3/wallet",
+   "paths./api/v3/wallet.get",
+   "paths./api/v3/wallet.get.operationId",
+   "paths./api/v3/wallet.get.responses",
+   "paths./api/v3/wallet.get.responses.200",
+   "paths./api/v3/wallet.get.responses.200.content",
+   "paths./api/v3/wallet.get.responses.200.content.application/json",
+   "paths./api/v3/wallet.get.responses.200.content.application/json.schema",
+   "paths./api/v3/wallet.get.responses.200.description",
+   "paths./api/v3/wallet.get.summary",
+   "paths./health",
+   "paths./health.get",
+   "paths./health.get.operationId",
+   "paths./health.get.responses",
+   "paths./health.get.responses.200",
+   "paths./health.get.responses.200.content",
+   "paths./health.get.responses.200.content.application/json",
+   "paths./health.get.responses.200.content.application/json.schema",
+   "paths./health.get.responses.200.description",
+   "paths./health.get.summary",
+   "paths./internal/debug/config",
+   "paths./internal/debug/config.get",
+   "paths./internal/debug/config.get.operationId",
+   "paths./internal/debug/config.get.responses",
+   "paths./internal/debug/config.get.responses.200",
+   "paths./internal/debug/config.get.responses.200.content",
+   "paths./internal/debug/config.get.responses.200.content.application/json",
+   "paths./internal/debug/config.get.responses.200.content.application/json.schema",
+   "paths./internal/debug/config.get.responses.200.description",
+   "paths./internal/debug/config.get.summary",
+   "paths./static/app.v{v}.js",
+   "paths./static/app.v{v}.js.get",
+   "paths./static/app.v{v}.js.get.operationId",
+   "paths./static/app.v{v}.js.get.parameters",
+   "paths./static/app.v{v}.js.get.parameters.in",
+   "paths./static/app.v{v}.js.get.parameters.name",
+   "paths./static/app.v{v}.js.get.parameters.required",
+   "paths./static/app.v{v}.js.get.parameters.schema",
+   "paths./static/app.v{v}.js.get.parameters.schema.title",
+   "paths./static/app.v{v}.js.get.parameters.schema.type",
+   "paths./static/app.v{v}.js.get.responses",
+   "paths./static/app.v{v}.js.get.responses.200",
+   "paths./static/app.v{v}.js.get.responses.200.content",
+   "paths./static/app.v{v}.js.get.responses.200.content.application/json",
+   "paths./static/app.v{v}.js.get.responses.200.content.application/json.schema",
+   "paths./static/app.v{v}.js.get.responses.200.description",
+   "paths./static/app.v{v}.js.get.responses.422",
+   "paths./static/app.v{v}.js.get.responses.422.content",
+   "paths./static/app.v{v}.js.get.responses.422.content.application/json",
+   "paths./static/app.v{v}.js.get.responses.422.content.application/json.schema",
+   "paths./static/app.v{v}.js.get.responses.422.content.application/json.schema.$ref",
+   "paths./static/app.v{v}.js.get.responses.422.description",
+   "paths./static/app.v{v}.js.get.summary"
+  ],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8100/openapi.json",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": false,
+  "label": "zombie",
+  "traffic": {},
+  "id_values": []
+ },
+ "GET /partner/v1/bookings": {
+  "key": "GET /partner/v1/bookings",
+  "method": "GET",
+  "template": "/partner/v1/bookings",
+  "host": "http://127.0.0.1:8101",
+  "sources": [
+   "log"
+  ],
+  "accounts": [
+   "a1_agent"
+  ],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [
+   {
+    "url": "http://127.0.0.1:8101/partner/v1/bookings",
+    "account": "a1_agent",
+    "body": null,
+    "status": 200
+   }
+  ],
+  "statuses": {
+   "200": 1
+  },
+  "auth_required": true,
+  "label": "shadow",
+  "traffic": {
+   "legit_window": 1386,
+   "total_window": 1386,
+   "legit_all": 3956,
+   "last_legit": "2026-10-31T23:26:30+00:00",
+   "clients": [
+    "okhttp/4.12 partner-sync"
+   ],
+   "infra_window": 0
+  },
+  "id_values": []
+ },
+ "GET /api/v3/agency/statements": {
+  "key": "GET /api/v3/agency/statements",
+  "method": "GET",
+  "template": "/api/v3/agency/statements",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "deploy",
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": [],
+  "boost": 3.0
+ },
+ "GET /api/v3/agency/statements/{id}": {
+  "key": "GET /api/v3/agency/statements/{id}",
+  "method": "GET",
+  "template": "/api/v3/agency/statements/{id}",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "deploy",
+   "js"
+  ],
+  "accounts": [],
+  "roles": [],
+  "query": {},
+  "body": {},
+  "headers": [],
+  "resp_keys": [],
+  "id_types": [],
+  "examples": [],
+  "statuses": {},
+  "auth_required": null,
+  "label": "dormant",
+  "traffic": {},
+  "id_values": [],
+  "boost": 3.0
+ }
+}

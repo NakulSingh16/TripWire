@@ -1,0 +1,97 @@
+{
+ "bootstrap_seconds": 143.6,
+ "phase1": {
+  "bugs_in_scope": 20,
+  "found": 20,
+  "recall": 1.0,
+  "findings": 20,
+  "precision": 1.0,
+  "false_positives": [],
+  "decoy_hits": [],
+  "missed": [],
+  "by_class": {
+   "access_control": 6,
+   "business_logic": 5,
+   "auth": 3,
+   "injection": 2,
+   "server_side": 2,
+   "data_exposure": 2
+  }
+ },
+ "inventory": {
+  "expected": {
+   "GET /api/v1/travellers/{id}": "zombie",
+   "GET /internal/debug/config": "zombie",
+   "GET /api/v3/bookings/export": "shadow"
+  },
+  "labelled_zombie_or_shadow": {
+   "GET /api/v1/travellers/{id}": "zombie",
+   "GET /api/v3/bookings/export": "shadow",
+   "GET /internal/debug/config": "zombie",
+   "GET /openapi.json": "zombie",
+   "GET /partner/v1/bookings": "shadow"
+  },
+  "correct": 3,
+  "of": 3,
+  "extra": {
+   "GET /openapi.json": "zombie",
+   "GET /partner/v1/bookings": "shadow"
+  },
+  "endpoints_in_kg": 33,
+  "label_counts": {
+   "dormant": 7,
+   "active": 20,
+   "zombie": 3,
+   "shadow": 2,
+   "infra": 1
+  }
+ },
+ "phase2": {
+  "bugs_in_scope": 20,
+  "found": 20,
+  "recall": 1.0,
+  "findings": 20,
+  "precision": 1.0,
+  "false_positives": [],
+  "decoy_hits": [],
+  "missed": [],
+  "by_class": {
+   "access_control": 6,
+   "business_logic": 5,
+   "auth": 3,
+   "injection": 2,
+   "server_side": 2,
+   "data_exposure": 2
+  }
+ },
+ "deploy": {
+  "new_findings_with_ttf": [
+   [
+    "[High] Cross-agency object read (BOLA) on GET /api/v3/agency/statements/{id}",
+    3.4
+   ]
+  ],
+  "resolved_by_retest": [
+   "[High] Cross-agency object read (BOLA) on GET /api/v3/invoices/{id}"
+  ]
+ },
+ "safety": {
+  "requests_sent": 1119,
+  "blocked": 0,
+  "block_reasons": {},
+  "out_of_scope_sent": 0,
+  "max_requests_in_any_1s": 11,
+  "deletes": 3,
+  "deletes_on_non_ledger": 0,
+  "audit_chain_valid": true
+ },
+ "planner_stats": [
+  "HAR: 101 requests -> 23 endpoints",
+  "JS bundle 5be0e89e: 26 routes (4 new)",
+  "prober: 178 candidates x 2 hosts -> 6 hidden endpoints confirmed; KG now 33",
+  "planner: 46 hypotheses",
+  "executed 46 hypotheses: {'CONFIRMED': 20, 'NEGATIVE': 26, 'SUPPRESSED': 0, 'BLOCKED': 0}",
+  "JS bundle 041756c2: 28 routes (2 new)",
+  "executed 5 hypotheses: {'CONFIRMED': 1, 'NEGATIVE': 4, 'SUPPRESSED': 0, 'BLOCKED': 0}"
+ ]
+}

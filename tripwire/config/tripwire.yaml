@@ -1,0 +1,68 @@
+# Single config file (scope, accounts, safety, business, owners). No secrets: passwords come from env TW_PW_<ALIAS>.
+scope:
+  schemes: [http]
+  hosts: ["127.0.0.1:8100", "127.0.0.1:8101"]
+  cidrs: ["127.0.0.0/8"]
+  callback_hosts: ["127.0.0.1:8199"]      # our OOB listener; only the TARGET contacts it, never the gate
+  path_denylist: ["^/admin/purge", "/payments/live"]
+  allow_logout_for: ["throwaway"]          # logout only on throwaway sessions (vault-tagged)
+
+accounts:   # alias -> username, role, agency. Victim = owner of canaries.
+  a1_admin: {username: a1_admin, role: agency_admin, agency: 1}
+  a1_agent: {username: a1_agent, role: agent, agency: 1}
+  a1_sub:   {username: a1_sub,   role: sub_agent, agency: 1}
+  a2_admin: {username: a2_admin, role: agency_admin, agency: 2}
+  a2_agent: {username: a2_agent, role: agent, agency: 2}
+login: {path: /api/v3/auth/login, host: "http://127.0.0.1:8100", user_field: username, pass_field: password, token_jsonpath: token}
+
+safety:
+  global_rps: 8
+  per_endpoint_rps: 3
+  concurrency: 4
+  timeout_s: 15
+  max_body_bytes: 2000000
+  bulk_pii_records: 20
+  auto_approve_max_risk: 2      # L0-L2 automatic; L3/L4 need approval
+  approve_all: false            # eval only: auto-approve L3 (never L4)
+  health: {warn_p95_x: 2.0, alarm_p95_x: 4.0, warn_5xx: 0.03, alarm_5xx: 0.10, window_s: 60}
+
+business:
+  criticality: {payment: 1.5, refund: 1.5, wallet: 1.5, invoice: 1.3, traveller: 1.4, passport: 1.4, booking: 1.2,
+                agency: 1.3, users: 1.3, statement: 1.3, supplier: 1.3, webhook: 1.3, partner: 1.3, me: 1.1, hotel: 0.7, search: 0.7, debug: 1.3}
+  public_endpoints: ["GET /api/v3/hotels/search", "GET /api/v3/hotels/{id}", "GET /health", "GET /", "POST /api/v3/auth/login",
+                     "GET /static/*", "GET /partner/v1/ping", "GET /api/v3/auth/callback"]
+  # intended policy overrides (role sees endpoint even if HAR did not show it)
+  same_agency_read_ok: true
+  sensitive_actions: ["PUT /api/v3/agency/bank-account", "PUT /api/v3/agency/email"]
+  # how to create a victim-owned canary of each resource (used by canary factory)
+  canary_flows:
+    traveller: [{POST: /api/v3/travellers, body: {name: "{marker}", passport: "Z9{rand7}", dob: "1990-01-01"}, save: {traveller_id: traveller_id}}]
+    booking:
+      - {POST: /api/v3/travellers, body: {name: "{marker}", passport: "Z9{rand7}", dob: "1990-01-01"}, save: {traveller_id: traveller_id}}
+      - {POST: /api/v3/quotes, body: {hotel_id: 2, nights: 1, rooms: 1}, save: {quote_id: quote_id, quote_total: total}}
+      - {POST: /api/v3/bookings, body: {quote_id: "{quote_id}", traveller_id: "{traveller_id}"}, save: {booking_id: booking_id, invoice_id: invoice_id}}
+  flows:  # scripted business flows for logic tests (state tokens named)
+    book: {quote: "POST /api/v3/quotes", book: "POST /api/v3/bookings", pay: "POST /api/v3/bookings/{id}/pay",
+           confirm: "POST /api/v3/bookings/{id}/confirm", cancel: "POST /api/v3/bookings/{id}/cancel", refund: "POST /api/v3/refunds",
+           balance: "GET /api/v3/wallet", read: "GET /api/v3/bookings/{id}", quote_body: {hotel_id: 2, nights: 1, rooms: 1},
+           coupon: WELCOME10}
+
+owners:   # path prefix / host -> team
+  - {match: "/api/v3/bookings", team: booking-svc, channel: "#booking-eng"}
+  - {match: "/api/v3/refunds", team: payments-svc, channel: "#payments-eng"}
+  - {match: "/api/v3/invoices", team: billing-svc, channel: "#billing-eng"}
+  - {match: "/api/v3/agency", team: identity-svc, channel: "#identity-eng"}
+  - {match: "/api/v3/auth", team: identity-svc, channel: "#identity-eng"}
+  - {match: "/api/v3/me", team: identity-svc, channel: "#identity-eng"}
+  - {match: "/api/v3/travellers", team: traveller-svc, channel: "#traveller-eng"}
+  - {match: "/api/v1/", team: legacy-platform, channel: "#platform"}
+  - {match: "/internal/", team: platform-sre, channel: "#sre"}
+  - {match: "/partner/", team: partner-integrations, channel: "#partners"}
+  - {match: "/api/v3/", team: booking-svc, channel: "#booking-eng"}
+service_paths: {booking-svc: ["/api/v3/"]}   # deploy service -> impacted prefixes
+
+inputs:
+  har_dir: data/har
+  gateway_log: data/gateway.log
+  log_window_days: 30
+llm: {enabled: auto, plan_model: claude-opus-5-5, fast_model: claude-haiku-5-5, budget_usd: 5}

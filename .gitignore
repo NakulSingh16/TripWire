@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+ENV/
+env/
+ENV*/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+.nox/
+
+# TripWire runtime artifacts & databases
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite3
+*.log
+runs_eval.log
+serve.log
+STOP
+
+# Keep results and tickets, but ignore temp databases in runs/
+tripwire/runs/*.db
+tripwire/runs/*.db-shm
+tripwire/runs/*.db-wal
+tripwire/runs/eval/*.db
+tripwire/runs_eval.log
+tripwire/serve.log
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

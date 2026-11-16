@@ -1,0 +1,128 @@
+[
+ {
+  "endpoint": "GET /api/v1/travellers/{id}",
+  "label": "zombie",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "last_legit_traffic_at": "2026-08-22T21:19:54+00:00",
+  "legit_requests_window": 0,
+  "legit_requests_total": 424,
+  "legit_clients": [
+   "TripVulnApp/1.2 (Android 11)"
+  ],
+  "reachable_without_auth": false,
+  "data_exposed": [],
+  "vulns": [
+   "F-9562a1 [High] Cross-agency object read (BOLA) on GET /api/v1/travellers/{id}"
+  ],
+  "current_version_sibling": "GET /api/v3/travellers/{id}",
+  "likely_owner": "legacy-platform",
+  "recommendation": "Decommission now"
+ },
+ {
+  "endpoint": "GET /api/v3/bookings/export",
+  "label": "shadow",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "last_legit_traffic_at": "2026-10-31T02:00:07+00:00",
+  "legit_requests_window": 30,
+  "legit_requests_total": 90,
+  "legit_clients": [
+   "python-requests/2.31"
+  ],
+  "reachable_without_auth": false,
+  "data_exposed": [],
+  "vulns": [
+   "F-4796b8 [High] Cross-tenant rows in collection on GET /api/v3/bookings/export"
+  ],
+  "current_version_sibling": null,
+  "likely_owner": "booking-svc",
+  "recommendation": "Document in gateway spec and apply current authz middleware \u2014 has open findings"
+ },
+ {
+  "endpoint": "GET /health",
+  "label": "zombie",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "last_legit_traffic_at": null,
+  "legit_requests_window": 0,
+  "legit_requests_total": 0,
+  "legit_clients": [],
+  "reachable_without_auth": true,
+  "data_exposed": [],
+  "vulns": [],
+  "current_version_sibling": null,
+  "likely_owner": "security-triage",
+  "recommendation": "Decommission now"
+ },
+ {
+  "endpoint": "GET /internal/debug/config",
+  "label": "zombie",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "log"
+  ],
+  "last_legit_traffic_at": null,
+  "legit_requests_window": 0,
+  "legit_requests_total": 0,
+  "legit_clients": [],
+  "reachable_without_auth": true,
+  "data_exposed": [
+   "jwt_secret"
+  ],
+  "vulns": [
+   "F-d1d287 [High] Secrets exposed in response on GET /internal/debug/config"
+  ],
+  "current_version_sibling": null,
+  "likely_owner": "platform-sre",
+  "recommendation": "Decommission now"
+ },
+ {
+  "endpoint": "GET /openapi.json",
+  "label": "zombie",
+  "host": "http://127.0.0.1:8100",
+  "sources": [
+   "probe"
+  ],
+  "last_legit_traffic_at": null,
+  "legit_requests_window": 0,
+  "legit_requests_total": 0,
+  "legit_clients": [],
+  "reachable_without_auth": true,
+  "data_exposed": [],
+  "vulns": [
+   "F-87c998 [Medium] Unauthenticated access on GET /openapi.json"
+  ],
+  "current_version_sibling": null,
+  "likely_owner": "security-triage",
+  "recommendation": "Decommission now"
+ },
+ {
+  "endpoint": "GET /partner/v1/bookings",
+  "label": "shadow",
+  "host": "http://127.0.0.1:8101",
+  "sources": [
+   "log"
+  ],
+  "last_legit_traffic_at": "2026-10-31T23:26:30+00:00",
+  "legit_requests_window": 1386,
+  "legit_requests_total": 3956,
+  "legit_clients": [
+   "okhttp/4.12 partner-sync"
+  ],
+  "reachable_without_auth": false,
+  "data_exposed": [],
+  "vulns": [
+   "F-225b5f [Critical] JWT alg=none accepted on GET /partner/v1/bookings"
+  ],
+  "current_version_sibling": null,
+  "likely_owner": "partner-integrations",
+  "recommendation": "Document in gateway spec and apply current authz middleware \u2014 has open findings"
+ }
+]

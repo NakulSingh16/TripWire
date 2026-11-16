@@ -1,0 +1,32 @@
+# Planted bugs. A finding matches a bug when its endpoint template AND class match.
+bugs:
+  - {id: 1,  class: access_control, endpoint: "GET /api/v3/invoices/{id}",            name: Cross-agency invoice read (BOLA)}
+  - {id: 2,  class: access_control, endpoint: "GET /api/v1/travellers/{id}",           name: Legacy v1 traveller read leaks passport cross-agency}
+  - {id: 3,  class: access_control, endpoint: "POST /api/v3/agency/users",            name: Sub-agent can create agency_admin (BFLA)}
+  - {id: 4,  class: access_control, endpoint: "PATCH /api/v3/me",                      name: Mass assignment of credit_limit/role}
+  - {id: 5,  class: access_control, endpoint: "GET /api/v3/agency/profile",            name: Tenant switch via X-Agency-Id}
+  - {id: 6,  class: business_logic, endpoint: "POST /api/v3/bookings",                 name: Client-supplied total trusted (fare tampering), technique: price_tamper}
+  - {id: 7,  class: business_logic, endpoint: "POST /api/v3/quotes",                   name: Negative nights gives negative total}
+  - {id: 8,  class: business_logic, endpoint: "POST /api/v3/bookings",                 name: Single-use coupon reusable, technique: coupon_reuse}
+  - {id: 9,  class: business_logic, endpoint: "POST /api/v3/refunds",                  name: Double refund on replay}
+  - {id: 10, class: business_logic, endpoint: "POST /api/v3/bookings/{id}/confirm",    name: Confirm with payment of another booking (step skip)}
+  - {id: 11, class: auth,           endpoint: "GET /partner/v1/bookings",              name: Partner API accepts alg none JWT}
+  - {id: 12, class: auth,           endpoint: "POST /api/v3/auth/logout",              name: Token valid after logout}
+  - {id: 13, class: auth,           endpoint: "PUT /api/v3/agency/bank-account",       name: No step-up on bank account change}
+  - {id: 14, class: injection,      endpoint: "GET /api/v3/hotels/search",             name: SQL injection in sort}
+  - {id: 15, class: injection,      endpoint: "GET /api/v3/vouchers/{id}",             name: SSTI in voucher note}
+  - {id: 16, class: server_side,    endpoint: "POST /api/v3/supplier/webhooks",        name: SSRF via webhook URL}
+  - {id: 17, class: server_side,    endpoint: "GET /api/v3/auth/callback",             name: Open redirect via next}
+  - {id: 18, class: data_exposure,  endpoint: "GET /api/v3/bookings",                  name: Full card PAN in booking list}
+  - {id: 19, class: data_exposure,  endpoint: "GET /internal/debug/config",            name: Unauthenticated debug config leaks JWT secret}
+  - {id: 20, class: access_control, endpoint: "GET /api/v3/bookings/export",           name: Shadow export returns all agencies' bookings}
+  - {id: 21, class: access_control, endpoint: "GET /api/v3/agency/statements/{id}",    name: New statements endpoint BOLA (deploy v2), deploy: 2}
+inventory:
+  zombie: ["GET /api/v1/travellers/{id}", "GET /internal/debug/config"]
+  shadow: ["GET /api/v3/bookings/export"]
+decoys:  # must NOT be reported
+  - "GET /api/v3/bookings/{id}"        # secure object check
+  - "GET /api/v3/travellers/{id}"      # secure + masked
+  - "GET /api/v3/hotels/{id}"          # 200 'not found' body, public by design
+  - "PUT /api/v3/agency/email"         # step-up present
+  - "GET /api/v3/hotels/search unauth" # public by design

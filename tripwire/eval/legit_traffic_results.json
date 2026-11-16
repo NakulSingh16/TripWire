@@ -1,0 +1,28 @@
+{
+ "rules": {
+  "acc": 0.9988,
+  "f1_legit": 0.9994,
+  "precision_legit": 1.0,
+  "recall_legit": 0.9988
+ },
+ "isolation_forest": {
+  "acc": 0.9185,
+  "f1_legit": 0.9551,
+  "precision_legit": 1.0,
+  "recall_legit": 0.914
+ },
+ "logreg_supervised": {
+  "acc": 0.9994,
+  "f1_legit": 0.9997,
+  "precision_legit": 1.0,
+  "recall_legit": 0.9994
+ },
+ "hybrid_rules_then_iforest": {
+  "acc": 0.9185,
+  "f1_legit": 0.9551,
+  "precision_legit": 1.0,
+  "recall_legit": 0.914
+ },
+ "_n_test_clients": 1694,
+ "_legit_share": 0.947
+}

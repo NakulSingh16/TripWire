@@ -1,0 +1,898 @@
+[
+ {
+  "id": "F-225b5f",
+  "technique": "jwt_alg_none",
+  "cls": "auth",
+  "endpoint": "GET /partner/v1/bookings",
+  "args": {},
+  "oracle": "jwt_accepted",
+  "explain": "alg=none token impersonating a1_agent accepted (bad-signature control rejected with 401)",
+  "audit": [
+   792,
+   803
+  ],
+  "poc": [
+   "# forged header {\"alg\":\"none\"}, payload sub=a1_agent",
+   "curl -s -X GET 'http://127.0.0.1:8101/partner/v1/bookings' -H 'Authorization: Bearer <FORGED>'"
+  ],
+  "base": 9.1,
+  "owasp": "API2:2023 Broken Authentication",
+  "cwe": "CWE-347",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496509.1349468,
+  "severity": 10.0,
+  "band": "Critical",
+  "severity_why": [
+   "base 9.1 (jwt_alg_none)",
+   "asset criticality 1.3 (+0.5)",
+   "no valid credentials needed (+0.5)"
+  ],
+  "impact": "Account or session integrity is broken: an attacker can act as other users or keep access after logout.",
+  "fix": "Pin accepted algorithms (algorithms=['HS256'/'RS256']) in the JWT verifier; reject 'none' and unsigned tokens.",
+  "owner": "partner-integrations",
+  "channel": "#partners",
+  "title": "[Critical] JWT alg=none accepted on GET /partner/v1/bookings",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   11.83,
+   "jwt_alg_none",
+   "GET /partner/v1/bookings",
+   {}
+  ]
+ },
+ {
+  "id": "F-f8127a",
+  "technique": "payment_reuse",
+  "cls": "business_logic",
+  "endpoint": "POST /api/v3/bookings/{id}/confirm",
+  "args": {},
+  "oracle": "flow_bypass",
+  "explain": "Unpaid booking 1055 reached TICKETED using payment 1057 of booking 1052",
+  "audit": [
+   826,
+   827,
+   830
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/bookings/1055/confirm' -H 'Authorization: Bearer $A1_AGENT_TOKEN' -H 'Content-Type: application/json' -d '{\"payment_id\": \"<PAYMENT_ID_OF_OTHER_BOOKING>\"}'"
+  ],
+  "base": 8.6,
+  "owasp": "API6:2023 Unrestricted Business Flow",
+  "cwe": "CWE-841",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496516.114094,
+  "severity": 10.0,
+  "band": "Critical",
+  "severity_why": [
+   "base 8.6 (payment_reuse)",
+   "asset criticality 1.2 (+0.5)",
+   "sequential/enumerable IDs (+0.4)",
+   "directly realisable financial loss (+0.8)"
+  ],
+  "impact": "Direct revenue loss / financial integrity break in the booking flow; exploitable by any logged-in agent.",
+  "fix": "On confirm, verify payment.booking_id == booking.id, payment status settled, and amount == booking total.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[Critical] Booking confirmed with another booking's payment on POST /api/v3/bookings/{id}/confirm",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   10.32,
+   "payment_reuse",
+   "POST /api/v3/bookings/{id}/confirm",
+   {}
+  ]
+ },
+ {
+  "id": "F-888722",
+  "technique": "price_tamper",
+  "cls": "business_logic",
+  "endpoint": "POST /api/v3/bookings",
+  "args": {
+   "field": "total"
+  },
+  "oracle": "price_integrity",
+  "explain": "Server quoted 4000.0 but booking was created with total 1.0 after sending total=1",
+  "audit": [
+   839
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/bookings' -H 'Authorization: Bearer $A1_AGENT_TOKEN' -H 'Content-Type: application/json' -d '{\"quote_id\": \"<QUOTE_ID>\", \"traveller_id\": \"<ID>\", \"total\": 1}'"
+  ],
+  "base": 8.1,
+  "owasp": "API6:2023 Unrestricted Business Flow",
+  "cwe": "CWE-602",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496513.5089102,
+  "severity": 9.4,
+  "band": "Critical",
+  "severity_why": [
+   "base 8.1 (price_tamper)",
+   "asset criticality 1.2 (+0.5)",
+   "directly realisable financial loss (+0.8)"
+  ],
+  "impact": "Direct revenue loss / financial integrity break in the booking flow; exploitable by any logged-in agent.",
+  "fix": "Never accept prices from the client: recompute the total server-side from the stored quote and reject mismatches.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[Critical] Client-controlled price accepted on POST /api/v3/bookings",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   9.72,
+   "price_tamper",
+   "POST /api/v3/bookings",
+   {
+    "field": "total"
+   }
+  ]
+ },
+ {
+  "id": "F-9562a1",
+  "technique": "bola_read",
+  "cls": "access_control",
+  "endpoint": "GET /api/v1/travellers/{id}",
+  "args": {},
+  "oracle": "canary_leak",
+  "explain": "a2_agent (agency 2) read a1_agent's object 1039 (owner/attacker similarity 1.00, denial-baseline similarity 0.00)",
+  "audit": [
+   842,
+   846,
+   852
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v1/travellers/1039' -H 'Authorization: Bearer $A2_AGENT_TOKEN'"
+  ],
+  "base": 6.5,
+  "owasp": "API1:2023 BOLA",
+  "cwe": "CWE-639",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496517.130099,
+  "severity": 8.9,
+  "band": "High",
+  "severity_why": [
+   "base 6.5 (bola_read)",
+   "asset criticality 1.4 (+1.0)",
+   "cross-tenant (+0.7)",
+   "sequential/enumerable IDs (+0.4)",
+   "zombie endpoint, likely unmonitored (+0.3)"
+  ],
+  "impact": "Any agency can read or act on another agency's traveller data, exposing PII/financial data across tenants.",
+  "fix": "Enforce object ownership in the handler: load the object scoped by the caller's tenant (WHERE id=? AND agency_id=token.agency) and return 404 otherwise. Add an object-level authz middleware and a regression test with two agencies.",
+  "owner": "legacy-platform",
+  "channel": "#platform",
+  "title": "[High] Cross-agency object read (BOLA) on GET /api/v1/travellers/{id}",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   9.1,
+   "bola_read",
+   "GET /api/v1/travellers/{id}",
+   {}
+  ]
+ },
+ {
+  "id": "F-d1d287",
+  "technique": "secret_in_response",
+  "cls": "data_exposure",
+  "endpoint": "GET /internal/debug/config",
+  "args": {},
+  "oracle": "secret_present",
+  "explain": "Response of GET /internal/debug/config contains secret in response in field(s) ['jwt_secret'] (values not stored)",
+  "audit": [
+   741
+  ],
+  "poc": [
+   "curl -s 'http://127.0.0.1:8100/internal/debug/config' -H 'Authorization: Bearer $TOKEN'"
+  ],
+  "base": 7.5,
+  "owasp": "API3:2023 BOPLA",
+  "cwe": "CWE-200",
+  "data": [
+   "jwt_secret"
+  ],
+  "status": "OPEN",
+  "children": [
+   {
+    "id": "F-4b8c03",
+    "technique": "unauth_access",
+    "explain": "GET /internal/debug/config returns the same data without any token"
+   }
+  ],
+  "detected_at": 1794496534.9046757,
+  "severity": 8.8,
+  "band": "High",
+  "severity_why": [
+   "base 7.5 (secret_in_response)",
+   "asset criticality 1.3 (+0.5)",
+   "no valid credentials needed (+0.5)",
+   "zombie endpoint, likely unmonitored (+0.3)"
+  ],
+  "impact": "Sensitive data (jwt_secret) is returned to clients that should not see it.",
+  "fix": "Remove the debug route from production builds; rotate the exposed secret immediately.",
+  "owner": "platform-sre",
+  "channel": "#sre",
+  "title": "[High] Secrets exposed in response on GET /internal/debug/config",
+  "needs_review": true
+ },
+ {
+  "id": "F-c06a19",
+  "technique": "ssrf_oob",
+  "cls": "server_side",
+  "endpoint": "POST /api/v3/supplier/webhooks",
+  "args": {
+   "param": "url"
+  },
+  "oracle": "oob_callback",
+  "explain": "Server fetched our out-of-band URL supplied in 'url' (callback token 825c43530b19)",
+  "audit": [
+   794
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/supplier/webhooks' -H 'Authorization: Bearer $A1_ADMIN_TOKEN' -H 'Content-Type: application/json' -d '{\"url\": \"http://<OOB-HOST>/<token>\"}'"
+  ],
+  "base": 8.2,
+  "owasp": "API7:2023 SSRF",
+  "cwe": "CWE-918",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496510.6728694,
+  "severity": 8.7,
+  "band": "High",
+  "severity_why": [
+   "base 8.2 (ssrf_oob)",
+   "asset criticality 1.3 (+0.5)"
+  ],
+  "impact": "Server can be steered to attacker-chosen destinations (webhook); internal network/phishing exposure.",
+  "fix": "Validate webhook URLs against an allowlist of partner domains, resolve and block private/link-local ranges, fetch via an egress proxy.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] SSRF via user-supplied URL on POST /api/v3/supplier/webhooks",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   10.66,
+   "ssrf_oob",
+   "POST /api/v3/supplier/webhooks",
+   {
+    "param": "url"
+   }
+  ]
+ },
+ {
+  "id": "F-98ab29",
+  "technique": "tenant_header_switch",
+  "cls": "access_control",
+  "endpoint": "GET /api/v3/agency/profile",
+  "args": {},
+  "oracle": "differential",
+  "explain": "Setting X-Agency-Id: 1 as a2_agent returns agency 1's data (identical to the owner's view)",
+  "audit": [
+   822,
+   825
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/agency/profile' -H 'Authorization: Bearer $A2_AGENT_TOKEN' -H 'X-Agency-Id: 1'"
+  ],
+  "base": 7.5,
+  "owasp": "API1:2023 BOLA",
+  "cwe": "CWE-639",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496512.1386425,
+  "severity": 8.7,
+  "band": "High",
+  "severity_why": [
+   "base 7.5 (tenant_header_switch)",
+   "asset criticality 1.3 (+0.5)",
+   "cross-tenant (+0.7)"
+  ],
+  "impact": "Any agency can read or act on another agency's profile data, exposing PII/financial data across tenants.",
+  "fix": "Ignore tenant-selector headers from clients; derive tenant only from the verified token (or validate membership before honouring the header).",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[High] Tenant switch via request header on GET /api/v3/agency/profile",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   9.75,
+   "tenant_header_switch",
+   "GET /api/v3/agency/profile",
+   {}
+  ]
+ },
+ {
+  "id": "F-a0b12a",
+  "technique": "privilege_grant",
+  "cls": "access_control",
+  "endpoint": "POST /api/v3/agency/users",
+  "args": {
+   "field": "role"
+  },
+  "oracle": "privilege",
+  "explain": "a1_sub (role sub_agent) created user tw_33095891 with role=agency_admin; admin read-back confirms",
+  "audit": [
+   804,
+   809,
+   810
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/agency/users' -H 'Authorization: Bearer $A1_SUB_TOKEN' -H 'Content-Type: application/json' -d '{\"username\": \"tw_33095891\", \"role\": \"agency_admin\", \"password\": \"Tw#a5c9226eea\"}'"
+  ],
+  "base": 8.0,
+  "owasp": "API5:2023 BFLA",
+  "cwe": "CWE-269",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496510.3820667,
+  "severity": 8.5,
+  "band": "High",
+  "severity_why": [
+   "base 8.0 (privilege_grant)",
+   "asset criticality 1.3 (+0.5)"
+  ],
+  "impact": "Any agency can read or act on another agency's user data, exposing PII/financial data across tenants.",
+  "fix": "Enforce function-level authz (only agency_admin may create users) and forbid granting a role above the caller's own.",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[High] Low role can grant admin role (BFLA) on POST /api/v3/agency/users",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   10.4,
+   "privilege_grant",
+   "POST /api/v3/agency/users",
+   {
+    "field": "role"
+   }
+  ]
+ },
+ {
+  "id": "F-23db3d",
+  "technique": "ssti_math",
+  "cls": "injection",
+  "endpoint": "GET /api/v3/vouchers/{id}",
+  "args": {
+   "param": "note"
+  },
+  "oracle": "ssti_math",
+  "explain": "Param 'note': template expression {{1337*7}} evaluated to 9359",
+  "audit": [
+   935
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/vouchers/{id}?note=%7B%7B1337%2A7%7D%7D' -H 'Authorization: Bearer $A1_AGENT_TOKEN'"
+  ],
+  "base": 8.8,
+  "owasp": "API8:2023 Security Misconfiguration",
+  "cwe": "CWE-1336",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496525.3802948,
+  "severity": 8.2,
+  "band": "High",
+  "severity_why": [
+   "base 8.8 (ssti_math)",
+   "low-criticality asset (-1.0)",
+   "sequential/enumerable IDs (+0.4)"
+  ],
+  "impact": "Attacker-controlled input reaches an interpreter in voucher; may lead to data theft or code execution.",
+  "fix": "Never render user input as a template; pass it as data to a sandboxed template with autoescape.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] Server-side template injection on GET /api/v3/vouchers/{id}",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   7.04,
+   "ssti_math",
+   "GET /api/v3/vouchers/{id}",
+   {
+    "param": "note"
+   }
+  ]
+ },
+ {
+  "id": "F-fa0452",
+  "technique": "bola_read",
+  "cls": "access_control",
+  "endpoint": "GET /api/v3/invoices/{id}",
+  "args": {},
+  "oracle": "differential",
+  "explain": "a2_agent (agency 2) read a1_agent's object 1044 (owner/attacker similarity 1.00, denial-baseline similarity 0.00)",
+  "audit": [
+   865,
+   868,
+   873
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/invoices/1044' -H 'Authorization: Bearer $A2_AGENT_TOKEN'"
+  ],
+  "base": 6.5,
+  "owasp": "API1:2023 BOLA",
+  "cwe": "CWE-639",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496518.0171678,
+  "severity": 8.1,
+  "band": "High",
+  "severity_why": [
+   "base 6.5 (bola_read)",
+   "asset criticality 1.3 (+0.5)",
+   "cross-tenant (+0.7)",
+   "sequential/enumerable IDs (+0.4)"
+  ],
+  "impact": "Any agency can read or act on another agency's invoice data, exposing PII/financial data across tenants.",
+  "fix": "Enforce object ownership in the handler: load the object scoped by the caller's tenant (WHERE id=? AND agency_id=token.agency) and return 404 otherwise. Add an object-level authz middleware and a regression test with two agencies.",
+  "owner": "billing-svc",
+  "channel": "#billing-eng",
+  "title": "[High] Cross-agency object read (BOLA) on GET /api/v3/invoices/{id}",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   8.45,
+   "bola_read",
+   "GET /api/v3/invoices/{id}",
+   {}
+  ]
+ },
+ {
+  "id": "F-4796b8",
+  "technique": "collection_tenant_leak",
+  "cls": "access_control",
+  "endpoint": "GET /api/v3/bookings/export",
+  "args": {},
+  "oracle": "tenant_field",
+  "explain": "a2_agent (agency 2) received 11 rows belonging to other tenants (only counts/ids kept as evidence)",
+  "audit": [
+   896
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/bookings/export' -H 'Authorization: Bearer $A2_AGENT_TOKEN'"
+  ],
+  "base": 6.5,
+  "owasp": "API1:2023 BOLA",
+  "cwe": "CWE-639",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496520.6229944,
+  "severity": 7.7,
+  "band": "High",
+  "severity_why": [
+   "base 6.5 (collection_tenant_leak)",
+   "asset criticality 1.2 (+0.5)",
+   "cross-tenant (+0.7)"
+  ],
+  "impact": "Any agency can read or act on another agency's export data, exposing PII/financial data across tenants.",
+  "fix": "Scope the collection query by the caller's tenant from the verified token; never return rows across tenants. If a cross-tenant export is needed, gate it behind a platform role.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] Cross-tenant rows in collection on GET /api/v3/bookings/export",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   7.8,
+   "collection_tenant_leak",
+   "GET /api/v3/bookings/export",
+   {}
+  ]
+ },
+ {
+  "id": "F-f4fe94",
+  "technique": "sqli_error",
+  "cls": "injection",
+  "endpoint": "GET /api/v3/hotels/search",
+  "args": {
+   "param": "sort"
+  },
+  "oracle": "injection_error",
+  "explain": "Param 'sort': quote causes DB error (500); comment-terminated payload is valid SQL (200) -> raw SQL concatenation",
+  "audit": [
+   965,
+   966,
+   968
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/hotels/search?sort=price%27' -H 'Authorization: Bearer $A1_AGENT_TOKEN'"
+  ],
+  "base": 8.6,
+  "owasp": "API8:2023 Security Misconfiguration",
+  "cwe": "CWE-89",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496530.2490962,
+  "severity": 7.6,
+  "band": "High",
+  "severity_why": [
+   "base 8.6 (sqli_error)",
+   "low-criticality asset (-1.0)"
+  ],
+  "impact": "Attacker-controlled input reaches an interpreter in search; may lead to data theft or code execution.",
+  "fix": "Use parameterised queries; map sort fields through an allowlist (e.g. {'price','name'}) instead of concatenating.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] SQL injection on GET /api/v3/hotels/search",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   6.88,
+   "sqli_error",
+   "GET /api/v3/hotels/search",
+   {
+    "param": "sort"
+   }
+  ]
+ },
+ {
+  "id": "F-56e638",
+  "technique": "missing_step_up",
+  "cls": "auth",
+  "endpoint": "PUT /api/v3/agency/bank-account",
+  "args": {},
+  "oracle": "business_rule",
+  "explain": "Sensitive action PUT /api/v3/agency/bank-account succeeded with session token only (no current_password/OTP)",
+  "audit": [
+   859
+  ],
+  "poc": [
+   "curl -s -X PUT 'http://127.0.0.1:8100/api/v3/agency/bank-account' -H 'Authorization: Bearer $A1_ADMIN_TOKEN' -H 'Content-Type: application/json' -d '{\"bank_account\": \"<NEW_VALUE>\"}'"
+  ],
+  "base": 6.8,
+  "owasp": "API2:2023 Broken Authentication",
+  "cwe": "CWE-306",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496516.8769004,
+  "severity": 7.3,
+  "band": "High",
+  "severity_why": [
+   "base 6.8 (missing_step_up)",
+   "asset criticality 1.3 (+0.5)"
+  ],
+  "impact": "Account or session integrity is broken: an attacker can act as other users or keep access after logout.",
+  "fix": "Require re-authentication (current password or OTP) for bank/payout changes and notify agency admins out-of-band.",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[High] No step-up auth on sensitive change on PUT /api/v3/agency/bank-account",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   8.84,
+   "missing_step_up",
+   "PUT /api/v3/agency/bank-account",
+   {}
+  ]
+ },
+ {
+  "id": "F-130559",
+  "technique": "coupon_reuse",
+  "cls": "business_logic",
+  "endpoint": "POST /api/v3/bookings",
+  "args": {
+   "field": "coupon"
+  },
+  "oracle": "business_rule",
+  "explain": "Single-use coupon WELCOME10 applied twice by a2_admin: totals 3600.0 and 3600.0 (quotes 4000.0, 4000.0)",
+  "audit": [
+   902,
+   905
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/bookings' -H 'Authorization: Bearer $A2_ADMIN_TOKEN' -H 'Content-Type: application/json' -d '{\"quote_id\": \"<QUOTE_ID>\", \"coupon\": \"WELCOME10\"}'",
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/bookings' -H 'Authorization: Bearer $A2_ADMIN_TOKEN' -H 'Content-Type: application/json' -d '{\"quote_id\": \"<QUOTE_ID>\", \"coupon\": \"WELCOME10\"}'"
+  ],
+  "base": 6.5,
+  "owasp": "API6:2023 Unrestricted Business Flow",
+  "cwe": "CWE-837",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496524.1186059,
+  "severity": 7.0,
+  "band": "High",
+  "severity_why": [
+   "base 6.5 (coupon_reuse)",
+   "asset criticality 1.2 (+0.5)"
+  ],
+  "impact": "Direct revenue loss / financial integrity break in the booking flow; exploitable by any logged-in agent.",
+  "fix": "Record coupon redemption atomically (unique constraint on coupon+tenant) and check before applying.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] Single-use coupon reusable on POST /api/v3/bookings",
+  "needs_review": true,
+  "replays": "2/2",
+  "hyp": [
+   7.8,
+   "coupon_reuse",
+   "POST /api/v3/bookings",
+   {
+    "field": "coupon"
+   }
+  ]
+ },
+ {
+  "id": "F-87d180",
+  "technique": "card_pan_in_response",
+  "cls": "data_exposure",
+  "endpoint": "GET /api/v3/bookings",
+  "args": {},
+  "oracle": "pii_present",
+  "explain": "Response of GET /api/v3/bookings contains card pan in response in field(s) ['card_number'] (values not stored)",
+  "audit": [
+   890
+  ],
+  "poc": [
+   "curl -s 'http://127.0.0.1:8100/api/v3/bookings' -H 'Authorization: Bearer $TOKEN'"
+  ],
+  "base": 6.5,
+  "owasp": "API3:2023 BOPLA",
+  "cwe": "CWE-200",
+  "data": [
+   "card_number"
+  ],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496534.9056761,
+  "severity": 7.0,
+  "band": "High",
+  "severity_why": [
+   "base 6.5 (card_pan_in_response)",
+   "asset criticality 1.2 (+0.5)"
+  ],
+  "impact": "Sensitive data (card_number) is returned to clients that should not see it.",
+  "fix": "Mask PAN in API responses (last 4 only); do not store full PAN outside the PCI vault.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[High] Full card number in response on GET /api/v3/bookings",
+  "needs_review": true
+ },
+ {
+  "id": "F-9d2281",
+  "technique": "negative_quantity",
+  "cls": "business_logic",
+  "endpoint": "POST /api/v3/quotes",
+  "args": {
+   "field": "nights"
+  },
+  "oracle": "price_integrity",
+  "explain": "nights=-2 accepted; server computed total=-8000.0",
+  "audit": [
+   982
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/quotes' -H 'Authorization: Bearer $A1_AGENT_TOKEN' -H 'Content-Type: application/json' -d '{\"hotel_id\": 2, \"nights\": -2, \"rooms\": 1}'"
+  ],
+  "base": 7.1,
+  "owasp": "API6:2023 Unrestricted Business Flow",
+  "cwe": "CWE-20",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496531.379453,
+  "severity": 6.9,
+  "band": "Medium",
+  "severity_why": [
+   "base 7.1 (negative_quantity)",
+   "low-criticality asset (-1.0)",
+   "directly realisable financial loss (+0.8)"
+  ],
+  "impact": "Direct revenue loss / financial integrity break in the quote flow; exploitable by any logged-in agent.",
+  "fix": "Validate quantities server-side (integer, 1..max) before pricing; reject <= 0.",
+  "owner": "booking-svc",
+  "channel": "#booking-eng",
+  "title": "[Medium] Negative quantity accepted on POST /api/v3/quotes",
+  "needs_review": false,
+  "replays": "2/2",
+  "hyp": [
+   5.68,
+   "negative_quantity",
+   "POST /api/v3/quotes",
+   {
+    "field": "nights"
+   }
+  ]
+ },
+ {
+  "id": "F-02d356",
+  "technique": "mass_assignment",
+  "cls": "access_control",
+  "endpoint": "PATCH /api/v3/me",
+  "args": {
+   "field": "credit_limit"
+  },
+  "oracle": "state_change",
+  "explain": "PATCH /api/v3/me accepted client field 'credit_limit' (5000 -> 782777); GET read-back confirms persistence",
+  "audit": [
+   929,
+   933,
+   934
+  ],
+  "poc": [
+   "curl -s -X PATCH 'http://127.0.0.1:8100/api/v3/me' -H 'Authorization: Bearer $A1_SUB_TOKEN' -H 'Content-Type: application/json' -d '{\"credit_limit\": 782777}'"
+  ],
+  "base": 6.5,
+  "owasp": "API3:2023 BOPLA",
+  "cwe": "CWE-915",
+  "data": [],
+  "status": "OPEN",
+  "children": [
+   {
+    "id": "F-adb6ab",
+    "technique": "mass_assignment",
+    "explain": "PATCH /api/v3/me accepted client field 'role' (sub_agent -> agency_admin); GET read-back confirms persistence"
+   }
+  ],
+  "detected_at": 1794496526.615864,
+  "severity": 6.5,
+  "band": "Medium",
+  "severity_why": [
+   "base 6.5 (mass_assignment)"
+  ],
+  "impact": "Any agency can read or act on another agency's me data, exposing PII/financial data across tenants.",
+  "fix": "Bind request bodies to an explicit allowlist DTO (name, phone); ignore/reject privileged fields like role, credit_limit.",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[Medium] Mass assignment of privileged field on PATCH /api/v3/me",
+  "needs_review": false,
+  "replays": "2/2",
+  "hyp": [
+   7.15,
+   "mass_assignment",
+   "PATCH /api/v3/me",
+   {
+    "field": "credit_limit"
+   }
+  ]
+ },
+ {
+  "id": "F-87c998",
+  "technique": "unauth_access",
+  "cls": "api_hygiene",
+  "endpoint": "GET /openapi.json",
+  "args": {},
+  "oracle": "differential",
+  "explain": "GET /openapi.json returns the same data without any token",
+  "audit": [
+   1005,
+   1006
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/openapi.json'"
+  ],
+  "base": 5.3,
+  "owasp": "API2:2023 Broken Authentication",
+  "cwe": "CWE-306",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496534.890997,
+  "severity": 5.1,
+  "band": "Medium",
+  "severity_why": [
+   "base 5.3 (unauth_access)",
+   "low-criticality asset (-1.0)",
+   "no valid credentials needed (+0.5)",
+   "zombie endpoint, likely unmonitored (+0.3)"
+  ],
+  "impact": "Endpoint is reachable without authentication.",
+  "fix": "Require authentication at the gateway for this route, or remove it if it is not needed.",
+  "owner": "security-triage",
+  "channel": "#appsec",
+  "title": "[Medium] Unauthenticated access on GET /openapi.json",
+  "needs_review": false,
+  "replays": "2/2",
+  "hyp": [
+   4.24,
+   "unauth_access",
+   "GET /openapi.json",
+   {}
+  ]
+ },
+ {
+  "id": "F-435fef",
+  "technique": "logout_invalidation",
+  "cls": "auth",
+  "endpoint": "POST /api/v3/auth/logout",
+  "args": {},
+  "oracle": "jwt_accepted",
+  "explain": "Session token still accepted after successful logout",
+  "audit": [
+   997,
+   1001,
+   1003
+  ],
+  "poc": [
+   "curl -s -X POST 'http://127.0.0.1:8100/api/v3/auth/logout' -H 'Authorization: Bearer $SESSION_TOKEN' -H 'Content-Type: application/json' -d '{}'",
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/me' -H 'Authorization: Bearer $SESSION_TOKEN'"
+  ],
+  "base": 5.4,
+  "owasp": "API2:2023 Broken Authentication",
+  "cwe": "CWE-613",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496534.7643874,
+  "severity": 4.4,
+  "band": "Medium",
+  "severity_why": [
+   "base 5.4 (logout_invalidation)",
+   "low-criticality asset (-1.0)"
+  ],
+  "impact": "Account or session integrity is broken: an attacker can act as other users or keep access after logout.",
+  "fix": "Revoke tokens on logout (denylist by jti until expiry) or use short-lived access tokens with server-side refresh revocation.",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[Medium] Token valid after logout on POST /api/v3/auth/logout",
+  "needs_review": false,
+  "replays": "2/2",
+  "hyp": [
+   4.32,
+   "logout_invalidation",
+   "POST /api/v3/auth/logout",
+   {}
+  ]
+ },
+ {
+  "id": "F-aecd9c",
+  "technique": "open_redirect",
+  "cls": "server_side",
+  "endpoint": "GET /api/v3/auth/callback",
+  "args": {
+   "param": "next"
+  },
+  "oracle": "redirect_location",
+  "explain": "'next' redirects to arbitrary external host (https://tw-redirect.example/x)",
+  "audit": [
+   999
+  ],
+  "poc": [
+   "curl -s -X GET 'http://127.0.0.1:8100/api/v3/auth/callback?next=https%3A%2F%2Ftw-redirect.example%2Fx'"
+  ],
+  "base": 4.7,
+  "owasp": "API8:2023 Security Misconfiguration",
+  "cwe": "CWE-601",
+  "data": [],
+  "status": "OPEN",
+  "children": [],
+  "detected_at": 1794496534.2483768,
+  "severity": 4.2,
+  "band": "Medium",
+  "severity_why": [
+   "base 4.7 (open_redirect)",
+   "low-criticality asset (-1.0)",
+   "no valid credentials needed (+0.5)"
+  ],
+  "impact": "Server can be steered to attacker-chosen destinations (callback); internal network/phishing exposure.",
+  "fix": "Only allow relative paths (single leading '/', not '//') or an allowlist of hosts for `next`.",
+  "owner": "identity-svc",
+  "channel": "#identity-eng",
+  "title": "[Medium] Open redirect on GET /api/v3/auth/callback",
+  "needs_review": false,
+  "replays": "2/2",
+  "hyp": [
+   3.76,
+   "open_redirect",
+   "GET /api/v3/auth/callback",
+   {
+    "param": "next"
+   }
+  ]
+ }
+]
